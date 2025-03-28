@@ -1,0 +1,37 @@
+.bigTime {
+    width: 690px;
+    height: 550px;
+    margin: 0 auto;
+    padding: 8px;
+    border: 3px solid rgb(243, 139, 214);
+    border-radius: 15px;
+    /* display: none; */
+  }
+  
+  .bigTime ul {
+    width: 670px;
+    height: 500px;
+    margin-top: 15px;
+  }
+  
+  .bigTime ul li {
+    list-style: none;
+    width: 580px;
+    height: 80px;
+    line-height: 80px;
+    margin-top: 20px;
+    padding-left: 50px;
+    color: rgb(235, 90, 221);
+    font-size: 22px;
+    border: 2px solid rgb(243, 139, 214);
+    border-radius: 20px;
+  }
+  
+  .bigTime ul li span {
+    color: rgb(222, 105, 175);
+    font-size: 28px;
+  }
+  
+ .bigtime #now {
+    font-size: larger;
+ }

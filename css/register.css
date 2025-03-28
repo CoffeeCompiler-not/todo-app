@@ -1,0 +1,71 @@
+body {
+  background-color:rgb(112, 208, 240);
+}
+.registerbox {
+    position: absolute;
+    width: 700px;
+    height: 400px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid rgb(107, 210, 244);
+    box-shadow: 0 0 15px 10px #fff;
+    border-radius: 15px;
+    background-color: rgb(169, 220, 248);
+  }
+  
+  .head {
+    text-align: center;
+    font-weight: 700;
+    color: rgb(4, 190, 253);
+    padding-top: 20px;
+  }
+  
+  .userbox {
+    text-align: center;
+    padding-top: 40px;
+    color: rgb(180, 188, 206);
+    font-size: 18px;
+  }
+  
+  .pwdbox {
+    text-align: center;
+    color: rgb(180, 188, 206);
+    font-size: 18px;
+  }
+  
+  .user,
+  .pwd {
+    padding-left: 8px;
+    height: 30px;
+    background-color: #fff;
+    border: 2px solid rgb(160, 229, 252);
+    border-radius: 5px;
+  }
+  
+  .user:focus,
+  .pwd:focus {
+    border-color: rgb(4, 190, 253);
+    outline: none;
+  }
+  
+  .register_btn {
+    margin: 20px 50px 0 310px;
+    width: 80px;
+    height: 40px;
+    font-weight: 700;
+    font-size: 18px;
+    color: rgb(4, 190, 253);
+    background-color: rgb(225, 239, 255);
+    border: 2px solid rgb(4, 190, 253);
+    border-radius: 8px;
+  }
+  
+  .gologin {
+    color: rgb(180, 188, 206);
+  }
+  
+  .gologin:hover,
+  .gologin:active {
+    color: rgb(4, 190, 253);
+  }

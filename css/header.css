@@ -1,0 +1,99 @@
+
+/*base*/
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #ff6764;
+  border: 1px solid #ff6764;
+}
+.btn-edit {
+  color: #fff;
+  background-color: rgb(255, 113, 208);
+  border: 1px solid rgb(255, 113, 170);
+  margin-right: 5px;
+}
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
+.btn:focus {
+  outline: none;
+}
+.todo-container {
+  width: 700px;
+  margin: 0 auto;
+  /* display: none; */
+
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 3px solid rgb(243, 139, 214);
+  border-radius: 15px;
+}
+
+/*header*/
+.todo-header {
+    padding-bottom: 10px;
+  }
+  
+  .todo-header input {
+    width: 650px;
+    height: 40px;
+    font-size: 16px;
+    color: rgb(180, 188, 206);
+    border: 2px solid rgb(252, 160, 247);
+    border-radius: 5px;
+    padding: 4px 7px;
+  }
+  
+  .todo-header input:focus {
+    outline: none;
+    border-color: rgba(4, 29, 253, 0.5);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(82, 168, 236, 0.6);
+  }
+/*footer*/
+.todo-footer {
+    width: 670px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 6px;
+    margin-top: 5px;
+    font-size: 16px;
+  }
+  
+  .todo-footer label {
+    display: inline-block;
+    margin-right: 3px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .todo-footer label input {
+    position: relative;
+    top: -3px;
+    left: 11px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .todo-footer button {
+    float: right;
+    margin: 5px 10px 0 0;
+  }

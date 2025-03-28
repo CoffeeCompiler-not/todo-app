@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(237, 189, 213);
+  }
+
+.loginbox {
+    position: absolute;
+    width: 700px;
+    height: 400px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid rgb(235, 162, 213);
+    box-shadow: 0 0 15px 10px #fff;
+    border-radius: 15px;
+    background-color:rgb(255 225 247);
+  }
+  .head {
+    text-align: center;
+    font-weight: 700;
+    color: rgb(222, 123, 163);
+    padding-top: 20px;
+  }
+  .userbox {
+    text-align: center;
+    padding-top: 40px;
+    color: rgb(180, 188, 206);
+    font-size: 18px;
+  }
+  .pwdbox {
+    text-align: center;
+    color: rgb(180, 188, 206);
+    font-size: 18px;
+  }
+.user,.pwd {
+  padding-left: 8px;
+  height: 30px;
+  background-color: #fff;
+  border: 2px solid rgb(201, 160, 194);
+  border-radius: 5px;
+}
+.user:focus,
+.pwd:focus {
+  border-color: rgb(193, 142, 178);
+  outline: none;
+}
+
+.login_a {
+  display: inline-block;
+  margin: 20px 50px 0 310px;
+  width: 80px;
+  height: 40px;
+  line-height: 36px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: rgba(225, 162, 209, 0.77);
+  background-color: rgb(225, 239, 255);
+  border: 2px solid rgb(222, 148, 190);
+  border-radius: 8px;
+}
+.goRegister {
+    color: rgb(180, 188, 206);
+  }
+  
+  .goRegister:hover,
+  .goRegister:active {
+    color: rgb(4, 190, 253);
+  }

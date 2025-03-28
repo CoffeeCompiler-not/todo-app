@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>主页</title>
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/time.css">
+  <link rel="stylesheet" href="css/item.css">
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+</head>
+<body>
+    <div class="big_div">
+        
+            <ul role="tablist" class="nav">
+               <li><a href="#todolist" aria-selected="true" role="tab">todolist</a></li>
+                <li><a href="#time" role="tab">倒计时</a></li>
+                <li><a href="./Login.html" role="tab">退出登录</a></li>
+            </ul>
+            <div class="indicator"></div>
+       
+        <div class="content">
+            <div class="todo-container" aria-hidden="false" id="todolist">
+                <div class="todo-wrap">
+                    <div class="todo-header">
+                        <input
+                          type="text"
+                          placeholder="请输入你的任务名称，按回车键确认"
+                        />
+                      </div>
+                      <ul class="todo-main" id="todo-list">
+                        <li class="item" >
+                            <label>
+                              <input
+                                type="checkbox"
+                                class="checkbox_inp" />
+                              <span>打游戏</span>
+                              <input
+                                type="text"
+                                class="change_inp"                 
+                              />
+                            </label>
+                            <button class="btn btn-danger">
+                              删&ensp;除
+                            </button>
+                            <button class="btn btn-edit">
+                              编&ensp;辑
+                            </button>
+                        </li>
+                      </ul>
+                      <div class="todo-footer" >
+                        <label>
+                          <input type="checkbox"  />
+                        </label>
+                        <span id="total">
+                         <span id="complete">已完成 </span> / 全部
+                         </span>
+                        <button class="btn btn-danger" id="clear">清除已完成任务</button>
+                      </div>
+                </div>
+              </div>
+           
+                <div class="bigTime" aria-hidden="true" id="time">
+                    <ul>
+                      <li id="now" style="font-size:30px; font-weight: bold;"></li>
+                      <li id="year"></li>
+                      <li id="month"></li>
+                      <li id="week"></li>
+                      <li id="tomorrow"></li>
+                    </ul>
+                  </div>
+        
+          </div>
+    </div>
+    
+  <script>
+//当前时间
+function updateCurrentTime() {
+    const now1 = document.querySelector('#now');
+    now1.innerHTML = `当&ensp;前&ensp;时&ensp;间：`+moment().format('YYYY-MM-DD HH:mm:ss');
+}
+//封装函数
+function getTime(endTime){
+    const now=+new Date();
+    const last=+new Date(endTime);
+    const count=(last-now)/1000;
+    let d, h, m, s;
+    if(count>0){
+         d=parseInt(count/60/60/24);
+         h=parseInt(count/60/60%24);
+        h=h<10?'0'+h:h;  
+         m=parseInt(count/60%60);
+        m=m<10?'0'+m:m;
+        s=parseInt(count%60);
+        s=s<10?'0'+s:s;
+    }
+    return `<span>${d}天&ensp;${h}小时&ensp;${m}分钟&ensp;${s}秒</span>`;
+}
+const year=document.querySelector('#year');
+const month=document.querySelector('#month');
+const week=document.querySelector('#week');
+const tomorrow=document.querySelector('#tomorrow');
+
+setInterval(()=>{
+    
+    year.innerHTML=`今&ensp;年&ensp;剩&ensp;余：`+getTime('2026-1-1 00:00:00');
+    month.innerHTML=`本&ensp;月&ensp;已&ensp;过：`+getTime('2025-4-1 00:00:00');
+    week.innerHTML=`本&ensp;周&ensp;还&ensp;剩：`+getTime('2025-3-31 00:00:00');
+    tomorrow.innerHTML=` 距离明天还有：`+getTime('2025-3-29 00:00:00');
+    updateCurrentTime();
+
+},1000);
+
+//事件委托tab栏切换
+document.querySelector('.nav').addEventListener('click', function (e) {
+            if (e.target.tagName === 'A') {
+                const activeTab = document.querySelector('.nav > li > a[aria-selected="true"]');
+                 if (activeTab) {
+                     activeTab.setAttribute('aria-selected', 'false');
+                     const sectionId = activeTab.getAttribute('href').substring(1);
+                     document.getElementById(sectionId).setAttribute('aria-hidden', 'true');
+                 }
+                e.target.setAttribute('aria-selected', 'true');
+                const sectionId = e.target.getAttribute('href').substring(1);
+                document.getElementById(sectionId).setAttribute('aria-hidden', 'false');
+                const indicator = document.querySelector('.indicator');
+                const leftPos = e.target.offsetLeft;
+                const width = e.target.offsetWidth;
+                indicator.style.left = `${leftPos}px`;
+                indicator.style.width = `${width}px`;
+            }
+        });
+///todolist逻辑
+//  const totalCount = document.getElementById('total');
+//  //console.log(totalCount);
+//  const completedCount = document.getElementById('complete');
+ //console.log(completedCount);
+// 更新任务数量统计
+function updateTaskCounts() {
+    const items = document.querySelectorAll('.item');
+    const completedItems = document.querySelectorAll('.item .checkbox_inp:checked');
+    const totalSpan = document.getElementById('total');
+    totalSpan.innerHTML = `<span id="complete">已完成 ${completedItems.length}</span> / 全部 ${items.length}`;
+}
+
+
+
+
+// 获取待办事项列表容器
+const todoList = document.getElementById('todo-list');
+const tx = document.querySelector('input[type="text"]');
+
+tx.addEventListener('keyup', function (e) {
+  if (e.key === 'Enter') {
+    const value = tx.value.trim(); // 获取输入值并去除首尾空格
+    if (value !== '') { // 如果输入值不为空
+      // 创建新的待办事项
+      const newTodoItem = document.createElement('li');
+      newTodoItem.className = 'item';
+      newTodoItem.innerHTML = `
+        <label>
+          <input type="checkbox" class="checkbox_inp" />
+          <span>${value}</span>
+          <input type="text" class="change_inp" />
+        </label>
+        <button class="btn btn-danger">删&ensp;除</button>
+        <button class="btn btn-edit">编&ensp;辑</button>
+      `;
+      // 将新的待办事项添加到列表中
+      todoList.appendChild(newTodoItem);
+      // 清空输入框
+      updateTaskCounts();
+      tx.value = '';
+    }
+  }
+});
+
+
+ // 动态添加删除和编辑功能
+// 修改后的编辑功能逻辑
+todoList.addEventListener('click', function (e) {
+        if (e.target.classList.contains('btn-danger')) {
+            // 删除逻辑保持不变...
+        } else if (e.target.classList.contains('btn-edit')) {
+            // 编辑待办事项（修正部分）
+            const li = e.target.closest('li');
+            const label = li.querySelector('label');
+            const span = label.querySelector('span');
+            const input = label.querySelector('.change_inp');
+            
+            if (span.style.display === 'none') {
+                // 保存编辑内容
+                span.textContent = input.value.trim();
+                span.style.display = 'inline';
+                input.style.display = 'none';
+                updateTaskCounts();
+            } else {
+                // 进入编辑模式
+                input.value = span.textContent;
+                span.style.display = 'none';
+                input.style.display = 'inline';
+                input.focus(); // 添加焦点提升体验
+            }
+        } else if (e.target.classList.contains('checkbox_inp')) {
+            updateTaskCounts();
+        }
+    });
+
+
+        // 清除已完成的任务
+      const clearBtn = document.getElementById('clear');
+      // console.log(clearBtn);
+        clearBtn.addEventListener('click', function () {
+    const completedItems = document.querySelectorAll('.item .checkbox_inp:checked');
+    completedItems.forEach(function (checkbox) {
+        checkbox.closest('li').remove();
+        updateTaskCounts();
+    });
+  
+    updateTaskCounts();
+});
+
+
+  </script>
+</body>
+</html>
+<style>
+        *:focus {
+            outline: 1px dotted rgb(222, 140, 199);
+        }
+
+        .nav {
+            position: relative;
+            top: 10%;
+            left: 26%;
+            width: 670px;
+            height: 60px;
+            border: 3px solid rgb(236, 145, 222);
+            border-radius: 15px;
+        }
+        .nav .indicator {
+            display: block;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 20%;
+            background: #e54c1e;
+            transform: translateX(0);
+            transition: all 0.3s ease;
+        }
+        .nav > li {
+          text-align: center;
+          list-style: none;
+            font-size: 17px;
+            float: left;
+            width: 210px;
+        }
+        .nav > li a {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            color: rgb(243, 139, 214);
+            transition: all 0.3s ease 0.4s;
+        }
+        .nav > li a:before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background: rgba(243, 139, 214, 0.451);
+            transform: translateY(100%);
+            transition: all 0.3s ease 0.3s;
+            z-index: -1;
+        }
+        .nav > li a[aria-selected="true"] {
+            color:  #83b7e5;
+        }
+        .nav > li a[aria-selected="true"]:before {
+            transform: translateY(0);
+        }
+        div[aria-hidden="true"] {
+            display: none;
+        }
+
+      
+
+    </style>

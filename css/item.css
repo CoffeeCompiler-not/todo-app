@@ -1,0 +1,70 @@
+    /*main*/
+    .todo-main {
+        width: 670px;
+        margin-left: 0px;
+        border: 2px solid rgba(243, 89, 168, 0.3);
+        border-radius: 5px;
+        padding: 0px;
+      }
+      
+      /*item*/
+      .todo-main li {
+        list-style: none;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      .todo-maine li label {
+        cursor: pointer;
+        color: rgb(243, 131, 222);
+        font-weight: 400;
+        font-size: 16px;
+      }
+      
+      .todo-main li label input {
+        vertical-align: middle;
+        margin-right: 15px;
+        position: relative;
+      }
+      
+      .todo-main li label .checkbox_inp {
+        top: -3px;
+        width: 16px;
+        height: 16px;
+      }
+      
+      .todo-main li label .change_inp {
+        width: 150px;
+        height: 30px;
+      display: none;
+      }
+      
+      .todo-main li label .change_inp:focus {
+        border: none;
+        outline: 2px solid rgba(234, 124, 194, 0.6);
+        border-radius: 5px;
+      }
+      
+      .todo-main li button {
+        float: right;
+        display: none;
+        margin-top: 4px;
+      }
+      
+      .todo-main li:before {
+        content: initial;
+      }
+      
+      .todo-main li:last-child {
+        border-bottom: none;
+      }
+      
+      .todo-main li:hover {
+        background-color: rgb(255, 239, 239);
+      }
+      
+      .todo-main li:hover button {
+        display: block;
+      }
